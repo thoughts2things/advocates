@@ -1,0 +1,4 @@
+- Metadata
+- Debounce Search
+- Responsiveness
+- Cypress / Jest Tests

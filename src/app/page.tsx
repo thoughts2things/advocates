@@ -1,6 +1,8 @@
-import { NavigationHeader } from "./components/NavigationHeader";
-import { Hero } from "./components/Hero";
-import { AdvocateSearch } from "./components/AdvocateSearch";
+import { NavigationHeader } from "./components/navigation-header/NavigationHeader";
+import { Hero } from "./components/hero/Hero";
+import { AdvocateSearch } from "./components/advocate-search/AdvocateSearch";
+import { AdvocateShowcase } from "./components/advocate-showcase/AdvocateShowcase";
+import { PageContent } from "./components/page-content/PageContent";
 
 export default function Home() {
   return (
@@ -9,6 +11,9 @@ export default function Home() {
       <Hero title="Find Your Advocate">
         <AdvocateSearch />
       </Hero>
+      <PageContent>
+        <AdvocateShowcase />
+      </PageContent>
     </main>
   );
 }
