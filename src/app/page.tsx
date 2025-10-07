@@ -7,7 +7,6 @@ import { PageContent } from "./components/page-content/PageContent";
 export default function Home() {
   return (
     <main>
-      <NavigationHeader />
       <Hero title="Find Your Advocate">
         <AdvocateSearch />
       </Hero>
