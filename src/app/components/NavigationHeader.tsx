@@ -4,7 +4,7 @@ interface NavigationHeaderProps {
   title?: string;
 }
 
-export const NavigationHeader = ({ title }: NavigationHeaderProps) => {
+export function NavigationHeader({ title }: NavigationHeaderProps) {
   return (
     <div className="h-[60px] w-full bg-[#265b4e] text-[#f5f5f5] flex items-center justify-between px-8">
       <div className="flex items-center gap-2">
@@ -13,4 +13,4 @@ export const NavigationHeader = ({ title }: NavigationHeaderProps) => {
       <div className="flex items-center gap-2"></div>
     </div>
   );
-};
+}
