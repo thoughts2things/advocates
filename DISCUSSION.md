@@ -2,3 +2,4 @@
 - Debounce Search
 - Responsiveness
 - Cypress / Jest Tests
+- Clear Search
