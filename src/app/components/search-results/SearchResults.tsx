@@ -1,80 +1,28 @@
 import { AdvocateCard } from "../advocate-card/AdvocateCard";
 
+interface Advocate {
+  id: number;
+  firstName: string;
+  lastName: string;
+  city: string;
+  degree: string;
+  specialties: string[];
+  yearsOfExperience: number;
+  phoneNumber: number;
+}
+
 interface SearchResultsProps {
+  advocates: Advocate[];
   searchQuery?: string;
   location?: string;
 }
 
-export function SearchResults({ searchQuery, location }: SearchResultsProps) {
-  const allAdvocates = [
-    {
-      id: 1,
-      name: "Sarah Mitchell",
-      location: "Chicago",
-      specialties: ["Depression", "Anxiety", "PTSD"],
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      location: "Seattle",
-      specialties: ["Eating Disorders", "Trauma", "Self-Harm"],
-    },
-    {
-      id: 3,
-      name: "Jane Rodriguez",
-      location: "Boston",
-      specialties: ["Substance Abuse", "Bipolar Disorder", "ADHD"],
-    },
-    {
-      id: 4,
-      name: "Robert Davis",
-      location: "Austin",
-      specialties: ["OCD", "Panic Disorder", "Social Anxiety"],
-    },
-    {
-      id: 5,
-      name: "Emily Thompson",
-      location: "Chicago",
-      specialties: ["Depression", "Grief Counseling", "Family Therapy"],
-    },
-    {
-      id: 6,
-      name: "David Kim",
-      location: "Seattle",
-      specialties: ["Anxiety", "Stress Management", "Mindfulness"],
-    },
-    {
-      id: 7,
-      name: "Maria Garcia",
-      location: "Austin",
-      specialties: ["PTSD", "Veterans Support", "Trauma"],
-    },
-    {
-      id: 8,
-      name: "James Wilson",
-      location: "Boston",
-      specialties: ["ADHD", "Learning Disabilities", "Child Psychology"],
-    },
-  ];
-
-  // Filter advocates based on search criteria
-  const filteredAdvocates = allAdvocates.filter((advocate) => {
-    const matchesLocation =
-      !location ||
-      advocate.location.toLowerCase().includes(location.toLowerCase());
-
-    const matchesQuery =
-      !searchQuery ||
-      advocate.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      advocate.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      advocate.specialties.some((specialty) =>
-        specialty.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-
-    return matchesLocation && matchesQuery;
-  });
-
-  const resultsCount = filteredAdvocates.length;
+export function SearchResults({
+  advocates,
+  searchQuery,
+  location,
+}: SearchResultsProps) {
+  const resultsCount = advocates.length;
   const hasFilters = searchQuery || location;
 
   return (
@@ -90,9 +38,9 @@ export function SearchResults({ searchQuery, location }: SearchResultsProps) {
         </p>
       </div>
 
-      {filteredAdvocates.length > 0 ? (
+      {advocates.length > 0 ? (
         <div className="flex gap-24 justify-start flex-wrap pt-12">
-          {filteredAdvocates.map((advocate) => (
+          {advocates.map((advocate) => (
             <AdvocateCard
               key={advocate.id}
               advocate={advocate}

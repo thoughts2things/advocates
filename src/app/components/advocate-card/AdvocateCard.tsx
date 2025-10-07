@@ -15,12 +15,12 @@ export function AdvocateCard({ advocate, orientation }: AdvocateCardProps) {
       </div>
 
       <h3 className="text-xl font-semibold text-center mb-2 pt-[80px]">
-        {advocate.name}
+        {advocate.firstName} {advocate.lastName}
       </h3>
 
-      <p className="text-gray-700 text-center mb-2">{advocate.location}</p>
+      <p className="text-gray-700 text-center mb-2">{advocate.city}</p>
 
-      <p className="text-sm italic text-gray-600 text-center mb-4">
+      <p className="text-sm italic text-gray-600 text-center mb-4 line-clamp-1">
         {Array.isArray(advocate.specialties)
           ? advocate.specialties.join(", ")
           : advocate.specialties}

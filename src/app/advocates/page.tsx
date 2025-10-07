@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Find an Advocate | Solace",
   description:
-    "Search for mental health advocates by specialty, location, or condition",
+    "Search for health advocates by specialty, location, or condition",
 };
 
 interface AdvocatesPageProps {
@@ -16,9 +16,29 @@ interface AdvocatesPageProps {
   };
 }
 
+async function getAdvocates() {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    const response = await fetch(`${baseUrl}/api/advocates`, {
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch advocates");
+    }
+
+    const { data } = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching advocates:", error);
+    return [];
+  }
+}
+
 export default async function Advocates({ searchParams }: AdvocatesPageProps) {
   const searchQuery = searchParams.q;
   const location = searchParams.location;
+  const advocates = await getAdvocates();
 
   return (
     <main>
@@ -30,7 +50,11 @@ export default async function Advocates({ searchParams }: AdvocatesPageProps) {
       </div>
 
       <PageContent>
-        <SearchResults searchQuery={searchQuery} location={location} />
+        <SearchResults
+          advocates={advocates}
+          searchQuery={searchQuery}
+          location={location}
+        />
       </PageContent>
     </main>
   );
